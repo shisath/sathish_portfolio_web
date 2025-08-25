@@ -91,7 +91,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
       liveLink: '',
     ),
     Project(
-      gititle: 'Next Project !',
+      title: 'Next Project !',
       description:
           '🚧 Work in progress... Exciting features are on the way. Stay tuned!',
       imageUrl: 'asset/thermalPrinter.jpg',
