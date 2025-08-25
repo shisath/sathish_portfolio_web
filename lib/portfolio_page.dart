@@ -78,7 +78,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
     Project(
       title: 'Thermal printer Solution',
       description:
-          'Developed a Flutter-based POS application with thermal printer integration, using Provider for state management. The system enables businesses to generate and print receipts seamlessly, with real-time data storage and management powered by Firebase',
+          'Developed a Flutter-based POS application with thermal printer integration, using Provider for state management. The system enables businesses to generate and print receipts seamlessly, with real-time data storage and management powered by Firebase.',
       imageUrl: 'asset/thermalPrinter.jpg',
       technologies: [
         'Flutter',
@@ -87,6 +87,15 @@ class _PortfolioPageState extends State<PortfolioPage> {
         'Firestore Database',
         'Firebase Authentication',
       ],
+      githubLink: '',
+      liveLink: '',
+    ),
+    Project(
+      gititle: 'Next Project !',
+      description:
+          '🚧 Work in progress... Exciting features are on the way. Stay tuned!',
+      imageUrl: 'asset/thermalPrinter.jpg',
+      technologies: ['Comming Soon...'],
       githubLink: '',
       liveLink: '',
     ),
@@ -428,7 +437,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
                 children: [
                   Expanded(flex: 3, child: _buildAboutText()),
                   SizedBox(width: 48),
-                  Expanded(flex: 2, child: _buildProfileImage()),
+                  Expanded(flex: 1, child: _buildProfileImage()),
                 ],
               ),
         ],
@@ -438,8 +447,8 @@ class _PortfolioPageState extends State<PortfolioPage> {
 
   Widget _buildProfileImage() {
     return Container(
-      width: Responsive.isMobile(context) ? 200 : 300,
-      height: Responsive.isMobile(context) ? 200 : 300,
+      width: Responsive.isMobile(context) ? 200 : 100,
+      height: Responsive.isMobile(context) ? 200 : 290,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
@@ -467,7 +476,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
         ),
         SizedBox(height: 24),
         Text(
-          "My journey in mobile development began in 2023, and I've since worked with startups and established companies to build apps that millions of users love. I specialize in creating seamless user experiences with clean, maintainable code.",
+          "My journey in development began in 2023, and I've since worked with startups and established companies to build apps that millions of users love. I specialize in creating seamless user experiences with clean, maintainable code.",
           style: TextStyle(fontSize: 16, color: Colors.white70, height: 1.8),
         ),
         SizedBox(height: 16),
@@ -569,6 +578,8 @@ class _PortfolioPageState extends State<PortfolioPage> {
                 child: Image.asset(project.imageUrl, fit: BoxFit.cover),
               ),
             ),
+
+            // if (Responsive.isMobile(context)) ...[
             // Project Info
             Expanded(
               flex: 5,
@@ -589,11 +600,11 @@ class _PortfolioPageState extends State<PortfolioPage> {
                       child: Text(
                         project.description,
                         style: TextStyle(fontSize: 14, color: Colors.white70),
-                        maxLines: 3,
+                        maxLines: 5,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    SizedBox(height: 16),
+                    // SizedBox(height: 8),
                     Wrap(
                       spacing: 8,
                       runSpacing: 8,
@@ -771,12 +782,12 @@ class _PortfolioPageState extends State<PortfolioPage> {
                           'Academy and Insurance management websites with responsive design and user-friendly features',
                         ),
                         _buildAchievementItem(
-                          '3%',
+                          '3+',
                           'Built real-time communication apps',
                           'ZEGOCLOUD SDK, enabling seamless collaboration across platforms.',
                         ),
                         _buildAchievementItem(
-                          '4',
+                          '4+',
                           'Integrated advanced utilities',
                           'Image-to-Text (OCR), Excel report generation, and POS thermal printer solutions, improving efficiency for end users.',
                         ),
@@ -797,6 +808,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
         children: [
           Text(
             number,
+            textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 48,
               fontWeight: FontWeight.bold,
@@ -806,11 +818,14 @@ class _PortfolioPageState extends State<PortfolioPage> {
           SizedBox(height: 8),
           Text(
             title,
+            textAlign: TextAlign.center,
+
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 8),
           Text(
             subtitle,
+
             style: TextStyle(fontSize: 14, color: Colors.white70),
             textAlign: TextAlign.center,
           ),
@@ -1022,13 +1037,26 @@ class _PortfolioPageState extends State<PortfolioPage> {
               icon: Icon(Icons.send),
               label: Text("Send Message"),
               onPressed: () {
-                name.clear();
-                email.clear();
-                message.clear();
                 // Handle form submission
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Message sent successfully!')),
-                );
+                if (name.text.isNotEmpty &
+                    email.text.isNotEmpty &
+                    message.text.isNotEmpty) {
+                  name.clear();
+                  email.clear();
+                  message.clear();
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Message sent successfully!')),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        'All fields are required. Please fill out the form.',
+                      ),
+                    ),
+                  );
+                }
               },
             ),
           ),
