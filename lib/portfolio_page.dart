@@ -32,7 +32,6 @@ class _PortfolioPageState extends State<PortfolioPage> {
       githubLink: 'https://github.com/shisath/winngoo',
       liveLink: '',
     ),
-
     Project(
       title: 'Beema Insurance',
       description:
@@ -50,6 +49,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
       githubLink: '',
       liveLink: 'https://www.beema-online.com/b2c/landing',
     ),
+
     Project(
       title: 'Chat Application',
       description:
@@ -94,7 +94,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
       title: 'Next Project !',
       description:
           '🚧 Work in progress... Exciting features are on the way. Stay tuned!',
-      imageUrl: 'asset/thermalPrinter.jpg',
+      imageUrl: 'asset/construction.jpeg',
       technologies: ['Comming Soon...'],
       githubLink: '',
       liveLink: '',
@@ -314,7 +314,15 @@ class _PortfolioPageState extends State<PortfolioPage> {
                         speed: Duration(milliseconds: 100),
                       ),
                       TypewriterAnimatedText(
-                        'VBA Developer (excel)',
+                        'VBA Developer (Excel)',
+                        textStyle: TextStyle(
+                          fontSize: 24,
+                          color: Colors.white70,
+                        ),
+                        speed: Duration(milliseconds: 100),
+                      ),
+                      TypewriterAnimatedText(
+                        'Backend Developer',
                         textStyle: TextStyle(
                           fontSize: 24,
                           color: Colors.white70,
@@ -512,13 +520,14 @@ class _PortfolioPageState extends State<PortfolioPage> {
       key: _sectionKeys[2],
       padding: EdgeInsets.symmetric(
         vertical: 80,
-        horizontal: Responsive.isMobile(context) ? 24 : 80,
+        horizontal: Responsive.isMobile(context) ? 20 : 80,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _sectionTitle("Featured Projects"),
           SizedBox(height: 48),
+
           GridView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
@@ -531,7 +540,8 @@ class _PortfolioPageState extends State<PortfolioPage> {
                       : 3,
               crossAxisSpacing: 24,
               mainAxisSpacing: 24,
-              childAspectRatio: 0.75,
+              childAspectRatio: Responsive.isMobile(context) ? 0.60 : 0.85,
+              // 👈 allows natural height
             ),
             itemCount: _projects.length,
             itemBuilder: (context, index) {
@@ -584,9 +594,10 @@ class _PortfolioPageState extends State<PortfolioPage> {
             Expanded(
               flex: 5,
               child: Padding(
-                padding: EdgeInsets.all(16),
+                padding: EdgeInsets.all(10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
                       project.title,
@@ -600,14 +611,15 @@ class _PortfolioPageState extends State<PortfolioPage> {
                       child: Text(
                         project.description,
                         style: TextStyle(fontSize: 14, color: Colors.white70),
-                        maxLines: 5,
-                        overflow: TextOverflow.ellipsis,
+                        softWrap: true,
+                        // maxLines: 10,
+                        // overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    // SizedBox(height: 8),
+                    SizedBox(height: 8),
                     Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
+                      spacing: 7,
+                      runSpacing: 7,
                       children:
                           project.technologies
                               .map(
